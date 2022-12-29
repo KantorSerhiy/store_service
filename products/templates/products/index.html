@@ -1,0 +1,31 @@
+{% extends 'products/base.html' %}
+
+{% block css %}
+  <link href="/static/css/index.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <section>
+    <!--    <div class="alert alert-light text-center" role="alert">-->
+    <!--        -->
+    <!--    </div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="mt-5">Store</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Aliquid aperiam dolore illo iusto natus necessitatibus odit quasi quia quisquam rerum.
+                </p>
+                <button id="start-purchase-btn" type="button" class="btn btn-lg">
+                    <a id="start-purchase-link" href="{% url 'products:products' %}">
+                        Start shopping
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
