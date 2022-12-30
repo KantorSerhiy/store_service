@@ -1,4 +1,4 @@
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 
@@ -29,6 +29,7 @@ def register(request):
         form = UserRegisterForm(data=request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Grats, you have successfully registered. Now - log in!")
             return redirect("users:login")
     else:
         form = UserRegisterForm
@@ -38,7 +39,7 @@ def register(request):
     return render(request, "users/register.html", context=context)
 
 
-def profile(request):
+def profile(request):  # TODO: add success massage for update profile
     if request.method == "POST":
         form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
         if form.is_valid():
