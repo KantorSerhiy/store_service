@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 
-from users.forms import UserLoginForm, UserRegisterForm
+from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
 
 
 def login(request):
@@ -36,3 +36,21 @@ def register(request):
         "form": form
     }
     return render(request, "users/register.html", context=context)
+
+
+def profile(request):
+    if request.method == "POST":
+        form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("users:profile")
+        else:
+            print(form.errors)
+    else:
+        form = UserProfileForm(instance=request.user)
+    context = {
+        "title": "Profile",
+        "form": form,
+
+    }
+    return render(request, "users/profile.html", context=context)
