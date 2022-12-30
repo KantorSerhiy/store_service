@@ -23,7 +23,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'products:index' %}">Store</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Store</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,7 @@
                     <a class="nav-link" href="{% url 'products:products' %}">Catalog <i class="fas fa-shopping-bag"></i> </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Log in <i class="fas fa-sign-in-alt"></i></a>
+                    <a class="nav-link" href="{% url 'users:login' %}">Log in <i class="fas fa-sign-in-alt"></i></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -46,7 +46,7 @@
                             <a class="dropdown-item" href="">Profile</a>
                         </li>
                         <li><a class="dropdown-item" href="">Orders</a></li>
-                        <li><a class="dropdown-item" href="#">АAdmin-page</a></li>
+                        <li><a class="dropdown-item" href="#">Admin-page</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
