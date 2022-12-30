@@ -33,12 +33,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'products:products' %}">Catalog <i class="fas fa-shopping-bag"></i> </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:login' %}">Log in <i class="fas fa-sign-in-alt"></i></a>
-                </li>
+              {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
+                       data-bs-toggle="dropdown" aria-expanded="false">User: {{ user.get_username }}
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -51,12 +49,19 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url "users:logout" %}">
                                 Log out
                             </a>
                         </li>
                     </ul>
                 </li>
+              {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:login' %}">Log in <i class="fas fa-sign-in-alt"></i></a>
+                </li>
+              {% endif %} 
+
+
             </ul>
         </div>
     </div>

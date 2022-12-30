@@ -55,3 +55,8 @@ def profile(request):  # TODO: add success massage for update profile
 
     }
     return render(request, "users/profile.html", context=context)
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("index")
