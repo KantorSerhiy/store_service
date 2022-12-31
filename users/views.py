@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
+from products.models import Basket
 
 
 def login(request):
@@ -52,7 +53,7 @@ def profile(request):  # TODO: add success massage for update profile
     context = {
         "title": "Profile",
         "form": form,
-
+        "basket": Basket.objects.all()
     }
     return render(request, "users/profile.html", context=context)
 
