@@ -23,7 +23,7 @@ class Product(models.Model):
         return f"Name: {self.name}, price: {self.price}"
 
 
-class Basket(models.Model):
+class Basket(models.Model):  # TODO make basket single page
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
@@ -31,4 +31,3 @@ class Basket(models.Model):
 
     def __str__(self):
         return f"Basket for {self.user.username}, product {self.product.name}"
-

@@ -53,7 +53,7 @@ def profile(request):  # TODO: add success massage for update profile
     context = {
         "title": "Profile",
         "form": form,
-        "basket": Basket.objects.all()
+        "basket": Basket.objects.filter(user=request.user)
     }
     return render(request, "users/profile.html", context=context)
 
