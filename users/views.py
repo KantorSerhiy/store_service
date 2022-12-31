@@ -50,10 +50,13 @@ def profile(request):  # TODO: add success massage for update profile
             print(form.errors)
     else:
         form = UserProfileForm(instance=request.user)
+
+    baskets = Basket.objects.filter(user=request.user)
+
     context = {
         "title": "Profile",
         "form": form,
-        "basket": Basket.objects.filter(user=request.user)
+        "basket": baskets,
     }
     return render(request, "users/profile.html", context=context)
 
