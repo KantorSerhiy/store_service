@@ -1,5 +1,6 @@
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
@@ -40,6 +41,7 @@ def register(request):
     return render(request, "users/register.html", context=context)
 
 
+@login_required
 def profile(request):  # TODO: add success massage for update profile
     if request.method == "POST":
         form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
