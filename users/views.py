@@ -1,6 +1,6 @@
 from django.contrib import auth, messages
-from django.contrib.auth import authenticate
-from django.shortcuts import render, redirect
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
@@ -9,23 +9,10 @@ from products.models import Basket
 from users.models import User
 
 
-def login(request):
-    if request.method == "POST":
-        form = UserLoginForm(data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                auth.login(request, user)
-                return redirect("/")
-
-    else:
-        form = UserLoginForm()
-    context = {
-        "form": form
-    }
-    return render(request, "users/login.html", context=context)
+class UserLoginView(LoginView):
+    template_name = "users/login.html"
+    form_class = UserLoginForm
+    success_url = reverse_lazy("index")
 
 
 class UserRegisterView(CreateView):
