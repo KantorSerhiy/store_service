@@ -1,5 +1,6 @@
 from django.contrib import auth, messages
 from django.contrib.auth.views import LoginView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
@@ -15,11 +16,12 @@ class UserLoginView(LoginView):
     success_url = reverse_lazy("index")
 
 
-class UserRegisterView(CreateView):
+class UserRegisterView(SuccessMessageMixin, CreateView):
     model = User
     form_class = UserRegisterForm
     template_name = "users/register.html"
     success_url = reverse_lazy("users:login")
+    success_message = "Gratz, you are successful register"
 
     def get_context_data(self, **kwargs):
         context = super(UserRegisterView, self).get_context_data()
