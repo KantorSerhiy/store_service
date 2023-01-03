@@ -27,7 +27,7 @@ class EmailVerification(models.Model):
             kwargs={
                 "email": self.user.email,
                 "code": self.code,
-            }
+            },
         )
         verification_link = f"{settings.DOMAIN_NAME}{link}"
         subject = f"Confirm account for {self.user.username}"
