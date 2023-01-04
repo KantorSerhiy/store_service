@@ -14,60 +14,48 @@
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-primary">Basket</span>
-                    <span class="badge badge-primary badge-pill text-white">3</span>
+                    <span class="badge badge-primary badge-pill text-white">{{ basket.total_quantity }}</span>
                 </h4>
                 <ul class="list-group mb-3">
+                  {% for item in basket %}
                     <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Product name</h6>
-                            <small class="text-muted">2 </small>
-                        </div>
-                        <span class="text-muted">11 400 $.</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Second product</h6>
-                            <small class="text-muted">1</small>
-                        </div>
-                        <span class="text-muted">3 200 $</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Third item</h6>
-                            <small class="text-muted">3</small>
-                        </div>
-                        <span class="text-muted">12 894 $</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Amount payable</span>
-                        <strong>27 497 $</strong>
-                    </li>
+                          <div>
+                              <h6 class="my-0"> {{ item.product.name }}</h6>
+                              <small class="text-muted">{{ item.quantity }}</small>
+                          </div>
+                          <span class="text-muted">{{ item.sum }} $.</span>
+                      </li>
+                  {% endfor %}
+                  <li class="list-group-item d-flex justify-content-between">
+                      <span>Amount payable</span>
+                      <strong>{{ basket.total_sum }} $</strong>
+                  </li>
+
                 </ul>
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Delivery address</h4>
-                <form>
+                <form action="{% url 'orders:create' %}" method="post">
+                  {% csrf_token %}
                     <div class="row g-3">
                         <div class="col-sm-6">
-                            <label for="firstName" class="form-label">First name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="lolo" value="" required>
+                            <label for="{{ form.first_name.id_for_label }}" class="form-label">First name</label>
+                            {{ form.first_name }}
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="LO" value=""
-                                   required>
+                            <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+                            {{ form.last_name }}
                         </div>
 
                         <div class="col-12 mt-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                            {{ form.email }}
                         </div>
 
                         <div class="col-12 mt-3">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address"
-                                   placeholder="NY, Park" required>
+                            <label for="{{ form.address.id_for_label }}" class="form-label">Address</label>
+                            {{ form.address }}
                         </div>
 
                     </div>
