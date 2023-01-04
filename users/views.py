@@ -37,12 +37,6 @@ class UserProfileView(TitleMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy("users:profile", args=(self.object.id,))
 
-    def get_context_data(self, **kwargs):
-        context = super(UserProfileView, self).get_context_data()
-        context["basket"] = Basket.objects.filter(user=self.object).select_related("product")
-        # context["user"] = User.objects.filter(self.object.id).select_related("user")
-        return context
-
 
 def logout(request):
     auth.logout(request)
