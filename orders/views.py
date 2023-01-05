@@ -26,6 +26,16 @@ class CancelTemplateView(TitleMixin, generic.TemplateView):
     title = "Something wrong =("
 
 
+class OrderListView(TitleMixin, generic.ListView):
+    template_name = "orders/orders.html"
+    title = "Store - Orders"
+    queryset = Order.objects.all()
+
+    def get_queryset(self):
+        queryset = super(OrderListView, self).get_queryset()
+        return queryset.filter(initiator=self.request.user)
+
+
 class OrderCreateView(TitleMixin, generic.CreateView):
     template_name = "orders/order-create.html"
     form_class = OrderForm
