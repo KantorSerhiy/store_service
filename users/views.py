@@ -34,8 +34,11 @@ class UserProfileView(TitleMixin, UpdateView):
     template_name = "users/profile.html"
     title = "Store - Profile"
 
+    def get_object(self, queryset=None):
+        return self.request.user
+
     def get_success_url(self):
-        return reverse_lazy("users:profile", args=(self.object.id,))
+        return reverse_lazy("users:profile")
 
 
 def logout(request):
