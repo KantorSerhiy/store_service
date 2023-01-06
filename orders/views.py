@@ -36,6 +36,16 @@ class OrderListView(TitleMixin, generic.ListView):
         return queryset.filter(initiator=self.request.user)
 
 
+class OrderDetailView(generic.DetailView):
+    template_name = "orders/order.html"
+    model = Order
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderDetailView, self).get_context_data(**kwargs)
+        context["title"] = f"Store - Order #{self.object.id}"
+        return context
+
+
 class OrderCreateView(TitleMixin, generic.CreateView):
     template_name = "orders/order-create.html"
     form_class = OrderForm
