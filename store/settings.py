@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import psycopg2
 
 from dotenv import load_dotenv
 
@@ -36,9 +37,7 @@ ALLOWED_HOSTS = []
 DOMAIN_NAME = "http://127.0.0.1:8000"
 
 INTERNAL_IPS = [
-
     "127.0.0.1",
-
 ]
 
 # Application definition
@@ -52,15 +51,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.humanize",
-
     "debug_toolbar",
-
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
     "allauth.socialaccount.providers.google",
-
     "products",
     "users",
     "orders",
@@ -90,7 +86,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "products.context_processors.basket"
+                "products.context_processors.basket",
             ],
         },
     },
@@ -103,10 +99,14 @@ WSGI_APPLICATION = "store.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.environ.get("POSTGRES_HOST"),
+        "NAME": os.environ.get("POSTGRES_DB"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -177,11 +177,11 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 2
 
 SOCIALACCOUNT_PROVIDERS = {
-    "github": {
-        "SCOPE": [
-            "user",
-        ],
-    },
+    # "github": {
+    #     "SCOPE": [
+    #         "user",
+    #     ],
+    # },
     "google": {
         "SCOPE": [
             "profile",
