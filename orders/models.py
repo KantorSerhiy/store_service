@@ -11,9 +11,9 @@ class Order(models.Model):
     DELIVERED = 3
     STATUSES = (
         (CREATED, "Created"),
-        (PAID, 'Paid'),
+        (PAID, "Paid"),
         (ON_WAY, "On_way"),
-        (DELIVERED, "Delivered")
+        (DELIVERED, "Delivered"),
     )
 
     first_name = models.CharField(max_length=64)
@@ -33,7 +33,7 @@ class Order(models.Model):
         self.status = self.PAID
         self.basket_history = {
             "purchased_items": [basket.de_json() for basket in baskets],
-            "total_sum": float(baskets.total_sum())
+            "total_sum": float(baskets.total_sum()),
         }
         baskets.delete()
         self.save()

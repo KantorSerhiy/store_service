@@ -29,21 +29,21 @@ class Product(models.Model):
         return f"Name: {self.name}, price: {self.price}"
 
     def save(
-            self, force_insert=False, force_update=False, using=None, update_fields=None
+        self, force_insert=False, force_update=False, using=None, update_fields=None
     ):
         if not self.stripe_product_price_id:
             stripe_product_price = self.create_stripe_product_price()
             self.stripe_product_price_id = stripe_product_price["id"]
-        super(Product, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
+        super(Product, self).save(
+            force_insert=False, force_update=False, using=None, update_fields=None
+        )
 
     def create_stripe_product_price(self):
-        stripe_product = stripe.Product.create(
-            name=self.name
-        )
+        stripe_product = stripe.Product.create(name=self.name)
         stripe_product_price = stripe.Price.create(
             product=stripe_product["id"],
             unit_amount=round(self.price * 100),
-            currency="usd"
+            currency="usd",
         )
         return stripe_product_price
 
@@ -60,7 +60,7 @@ class BasketQuerySet(models.QuerySet):
         for basket in self:
             item = {
                 "price": basket.product.stripe_product_price_id,
-                "quantity": basket.quantity
+                "quantity": basket.quantity,
             }
             line_items.append(item)
         return line_items
@@ -85,6 +85,6 @@ class Basket(models.Model):  # TODO make basket single page
             "product_name": self.product.name,
             "quantity": self.quantity,
             "price": float(self.product.price),
-            "sum": float(self.sum())
+            "sum": float(self.sum()),
         }
         return basket_item
