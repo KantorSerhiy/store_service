@@ -13,6 +13,7 @@
 
             <h1 class="my-4">Store</h1>
             <div class="list-group">
+                <a href="{% url 'products:products' %}" class="list-group-item">All</a>
                 {% for cat in category %}
                   <a href="{% url 'products:category' cat.id %}" class="list-group-item">{{ cat.name }}</a>
                 {% endfor %}
@@ -31,7 +32,7 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <img class="d-block img-fluid" src="/static/img/slides/slide-2.jpg" alt="First slide">
+                        <img class="d-block img-fluid" src="/static/img/slides/2017-03-31+No+border+2500+x+1500.jpg" alt="First slide">
                     </div>
                     <div class="carousel-item">
                         <img class="d-block img-fluid" src="/static/img/slides/Website+banner+header+2500+x+1500+pixels.jpg" alt="Second slide">

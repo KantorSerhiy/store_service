@@ -25,7 +25,8 @@ class UserRegisterView(TitleMixin, SuccessMessageMixin, CreateView):
     template_name = "users/register.html"
     title = "Store - Registration"
     success_url = reverse_lazy("users:login")
-    success_message = "Gratz, you are successful register"
+    success_message = "Gratz, you are successful register." \
+                      "Check u email to verify!"
 
 
 class UserProfileView(TitleMixin, UpdateView):
