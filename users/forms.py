@@ -101,7 +101,7 @@ class UserProfileForm(UserChangeForm):
         widget=forms.TextInput(attrs={"class": "form-control py-4", "readonly": True})
     )
     email = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control py-4", "readonly": True})
+        widget=forms.TextInput(attrs={"class": "form-control py-4"})
     )
 
     class Meta:
