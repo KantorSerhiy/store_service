@@ -3,14 +3,13 @@
 Django project internet store
 
 ## Features
- - asd
- -  das
- - asd a
- - asdasd
- - asdasd
- - asd
- - asdasdf
- - wef
+ - Confirmation email upon user registration
+ - the ability to log in via github/gmail.
+ - the possibility to pay for the purchase through the stripe service.
+ - custom mixin for the title of each page.
+ - custom context processor
+ - Powerful admin page
+
 
 
 ## Installation
@@ -22,6 +21,7 @@ Python3 must be already installed
 
 ```shell
 git clone ####
+cd store-service/
 python -m venv venv
 venv\Scripts\activate (on Windows)
 venv\bin\activate (on Linux)
@@ -61,11 +61,11 @@ start watching with Step 4 – Create and configure a new Google APIs project
 
 
 ### How to work with STRIPE!
- - register your account in stripe
+ - register your account in [Stripe](https://stripe.com/)
  - need to head into our Stripe dashboard and grab our API keys.Take that key and store it in your .env
- - The Stripe CLI is very handy for testing webhooks. Simply install the CLI and login to your Stripe account so that you are ready to continue.
+ - The Stripe CLI is very handy for testing webhooks. Simply install the [CLI](https://stripe.com/docs/stripe-cli) and login to your Stripe account so that you are ready to continue.
  - Once your CLI is installed and ready, run the following command in a new terminal: 
- - stripe listen --forward-to 127.0.0.1:8000/webhooks/
+ - stripe listen --forward-to 127.0.0.1:8000/webhook/
  - You should notice in the terminal that Stripe gives you a webhook secret key. Take that key and store it in your .env
 
 
@@ -74,4 +74,10 @@ Run migrations and run server:
 python manage.py migrate
 python manage.py runserver
 ````
+
+Create superuser and add some categories and products.
+
+P.S.
+
+Use card 4242 4242 4242 4242 to test pay for products
 
