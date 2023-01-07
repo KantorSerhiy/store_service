@@ -75,7 +75,7 @@ python manage.py migrate
 python manage.py runserver
 ````
 
-Create superuser and add some categories and products.
+Now u can add some categories and products and test it.
 
 P.S.
 
