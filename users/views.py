@@ -27,11 +27,12 @@ class UserRegisterView(TitleMixin, SuccessMessageMixin, CreateView):
     success_message = "Gratz, you are successful register." "Check u email to verify!"
 
 
-class UserProfileView(TitleMixin, UpdateView):
+class UserProfileView(TitleMixin, SuccessMessageMixin, UpdateView):
     model = User  # TODO: add success massage for update profile
     form_class = UserProfileForm  # TODO: look to update
     template_name = "users/profile.html"
     title = "Store - Profile"
+    success_message = "Updated Success"
 
     def get_object(self, queryset=None):
         return self.request.user
