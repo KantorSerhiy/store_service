@@ -5,15 +5,10 @@ from users.models import User
 
 
 class Order(models.Model):
-    CREATED = 0
-    PAID = 1
-    ON_WAY = 2
-    DELIVERED = 3
+    CREATED, PAID = 0, 1
     STATUSES = (
         (CREATED, "Created"),
         (PAID, "Paid"),
-        (ON_WAY, "On_way"),
-        (DELIVERED, "Delivered"),
     )
 
     first_name = models.CharField(max_length=64)

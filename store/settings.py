@@ -107,7 +107,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -163,25 +162,22 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = "verifyy.not.store@gmail.com"
-# SERVER_EMAIL = "verifyy.not.store@gmail.com"
-
 
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
+
     "django.contrib.auth.backends.ModelBackend",
-    # `allauth` specific authentication methods, such as login by e-mail
+
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 SITE_ID = 2
 
 SOCIALACCOUNT_PROVIDERS = {
-    # "github": {
-    #     "SCOPE": [
-    #         "user",
-    #     ],
-    # },
+    "github": {
+        "SCOPE": [
+            "user",
+        ],
+    },
     "google": {
         "SCOPE": [
             "profile",
@@ -193,9 +189,6 @@ SOCIALACCOUNT_PROVIDERS = {
         "OAUTH_PKCE_ENABLED": True,
     },
 }
-
-
-# stripe
 
 STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
