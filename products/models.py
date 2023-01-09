@@ -66,7 +66,7 @@ class BasketQuerySet(models.QuerySet):
         return line_items
 
 
-class Basket(models.Model):  # TODO make basket single page
+class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)

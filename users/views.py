@@ -28,8 +28,8 @@ class UserRegisterView(TitleMixin, SuccessMessageMixin, CreateView):
 
 
 class UserProfileView(TitleMixin, SuccessMessageMixin, UpdateView):
-    model = User  # TODO: add success massage for update profile
-    form_class = UserProfileForm  # TODO: look to update
+    model = User
+    form_class = UserProfileForm
     template_name = "users/profile.html"
     title = "Store - Profile"
     success_message = "Updated Success"
